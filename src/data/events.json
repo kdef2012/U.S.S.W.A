@@ -1,0 +1,613 @@
+[
+  {
+    "title": "Cougar Clash",
+    "slug": "cougar-clash",
+    "locationId": "59",
+    "startDate": "2026-06-20",
+    "endDate": "2026-06-20",
+    "location": {
+      "name": "Southwestern Randolph High School",
+      "address": "1641 Hopewell Friends Road",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "K-Town Throwdown",
+    "slug": "k-town-throwdown",
+    "locationId": "54",
+    "startDate": "2026-06-13",
+    "endDate": "2026-06-13",
+    "location": {
+      "name": "AL Brown High School",
+      "address": "415 Martin Luther King Jr. Avenue",
+      "town": "Kannapolis",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eyes on the Prize 3",
+    "slug": "eyes-on-the-prize-3",
+    "locationId": "41",
+    "startDate": "2026-06-06",
+    "endDate": "2026-06-06",
+    "location": {
+      "name": "Asheboro High School",
+      "address": "1221 South Park Street",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Bash 3",
+    "slug": "bulldog-bash-3",
+    "locationId": "11",
+    "startDate": "2026-05-30",
+    "endDate": "2026-05-30",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "TBD Open",
+    "slug": "tbd-open",
+    "locationId": "57",
+    "startDate": "2026-05-23",
+    "endDate": "2026-05-23",
+    "location": {
+      "name": "West Forsyth High School",
+      "address": "1735 Lewisville-Clemmons Road",
+      "town": "Clemmons",
+      "state": "North Carolina"
+    }
+  },
+  {
+    "title": "Eyes on the Prize 2",
+    "slug": "eyes-on-the-prize-2",
+    "locationId": "41",
+    "startDate": "2026-05-16",
+    "endDate": "2026-05-16",
+    "location": {
+      "name": "Asheboro High School",
+      "address": "1221 South Park Street",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "War at the Water Tower 2",
+    "slug": "war-at-the-water-tower-2",
+    "locationId": "14",
+    "startDate": "2026-05-09",
+    "endDate": "2026-05-09",
+    "location": {
+      "name": "Glenn High School",
+      "address": "1600 Union Cross Road",
+      "town": "Winston-Salem",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Trinity Top Team Open",
+    "slug": "trinity-top-team-open",
+    "locationId": "11",
+    "startDate": "2026-05-02",
+    "endDate": "2026-05-02",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "War at the WaterTower",
+    "slug": "war-at-the-watertower-2",
+    "locationId": "14",
+    "startDate": "2026-04-25",
+    "endDate": "2026-04-25",
+    "location": {
+      "name": "Glenn High School",
+      "address": "1600 Union Cross Road",
+      "town": "Winston-Salem",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Bash II",
+    "slug": "bulldog-bash-2",
+    "locationId": "11",
+    "startDate": "2026-04-18",
+    "endDate": "2026-04-18",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Grim Reaper Open (SITE CHANGED TO EASTERN GUILFORD HS)",
+    "slug": "grim-reaper-open-2",
+    "locationId": "31",
+    "startDate": "2026-04-11",
+    "endDate": "2026-04-11",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Denton Dogfight",
+    "slug": "denton-dogfight",
+    "locationId": "58",
+    "startDate": "2026-04-04",
+    "endDate": "2026-04-04",
+    "location": {
+      "name": "South Davidson High School",
+      "address": "14956 NC-109",
+      "town": "Denton",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Iron Eagle Challenge",
+    "slug": "iron-eagle-wrestling-challenge-2",
+    "locationId": "15",
+    "startDate": "2026-03-28",
+    "endDate": "2026-03-28",
+    "location": {
+      "name": "Uwharrie Charter Middle Academy",
+      "address": "5154 US 220 Business South",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Bash I",
+    "slug": "bulldog-bash-1",
+    "locationId": "11",
+    "startDate": "2026-03-21",
+    "endDate": "2026-03-21",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Team Tomahawk Open",
+    "slug": "team-tomahawk-open-2",
+    "locationId": "48",
+    "startDate": "2026-03-14",
+    "endDate": "2026-03-14",
+    "location": {
+      "name": "South Stokes High School",
+      "address": "1100 South Stokes High Drive",
+      "town": "Walnut Cove",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eyes on the Prize 1",
+    "slug": "eyes-on-the-prize",
+    "locationId": "41",
+    "startDate": "2026-03-07",
+    "endDate": "2026-03-07",
+    "location": {
+      "name": "Asheboro High School",
+      "address": "1221 South Park Street",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eastside Showdown I",
+    "slug": "eastside-showdown-1",
+    "locationId": "31",
+    "startDate": "2026-02-28",
+    "endDate": "2026-02-28",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "2025 Halloween Havoc (CANCELLED)",
+    "slug": "2025-halloween-havoc",
+    "locationId": "31",
+    "startDate": "2025-10-18",
+    "endDate": "2025-10-18",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Grim Reapers Pre-Season Rumble",
+    "slug": "grim-reapers-pre-season-rumble-2",
+    "locationId": "42",
+    "startDate": "2025-10-11",
+    "endDate": "2025-10-11",
+    "location": {
+      "name": "Grimsley High School",
+      "address": "801 N Josephine Boyd St",
+      "town": "Greensboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Queen of the Ville (CANCELLED) Girls division offered at Glenn tomorrow",
+    "slug": "queen-of-the-ville",
+    "locationId": "14",
+    "startDate": "2025-10-05",
+    "endDate": "2025-10-05",
+    "location": {
+      "name": "Glenn High School",
+      "address": "1600 Union Cross Road",
+      "town": "Winston-Salem",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Pre-Season War at the WaterTower",
+    "slug": "pre-season-war-at-the-watertower-2",
+    "locationId": "14",
+    "startDate": "2025-10-04",
+    "endDate": "2025-10-04",
+    "location": {
+      "name": "Glenn High School",
+      "address": "1600 Union Cross Road",
+      "town": "Winston-Salem",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Pre-Season Bash 2",
+    "slug": "preseason-preseason-bash-2",
+    "locationId": "55",
+    "startDate": "2025-09-27",
+    "endDate": "2025-09-27",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity High School Drive",
+      "town": "Trinity",
+      "state": "North Carolina"
+    }
+  },
+  {
+    "title": "Eastside Preseason Showdown",
+    "slug": "eastside-preseason-showdown",
+    "locationId": "31",
+    "startDate": "2025-09-20",
+    "endDate": "2025-09-20",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Pre-Season Bash I",
+    "slug": "bulldog-pre-season-bash-i",
+    "locationId": "11",
+    "startDate": "2025-09-13",
+    "endDate": "2025-09-13",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "K-Town Pre-Season Showdown (CANCELLED)",
+    "slug": "",
+    "locationId": "54",
+    "startDate": "2025-09-06",
+    "endDate": "2025-09-06",
+    "location": {
+      "name": "AL Brown High School",
+      "address": "415 Martin Luther King Jr. Avenue",
+      "town": "Kannapolis",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "K-Town Pre-Season Showdown (CANCELLED)",
+    "slug": "k-town-showdown",
+    "locationId": "54",
+    "startDate": "2025-09-06",
+    "endDate": "2025-09-06",
+    "location": {
+      "name": "AL Brown High School",
+      "address": "415 Martin Luther King Jr. Avenue",
+      "town": "Kannapolis",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eyes on the Prize Pre-Season Open",
+    "slug": "eyes-on-the-prize-pre-season-open",
+    "locationId": "41",
+    "startDate": "2025-08-30",
+    "endDate": "2025-08-30",
+    "location": {
+      "name": "Asheboro High School",
+      "address": "1221 South Park Street",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Trinity Top Team Tangle",
+    "slug": "trinity-top-team-tangle",
+    "locationId": "11",
+    "startDate": "2025-08-23",
+    "endDate": "2025-08-23",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Tyro Throwdown",
+    "slug": "tyro-throwdown",
+    "locationId": "52",
+    "startDate": "2025-06-14",
+    "endDate": "2025-06-14",
+    "location": {
+      "name": "West Davidson High School",
+      "address": "250 County School Road",
+      "town": "Lexington",
+      "state": "NORTH CAROLINA"
+    }
+  },
+  {
+    "title": "Clash in Climax",
+    "slug": "clash-in-climax",
+    "locationId": "50",
+    "startDate": "2025-05-31",
+    "endDate": "2025-05-31",
+    "location": {
+      "name": "Providence Grove High School",
+      "address": "555 Mack Lineberry Road",
+      "town": "Climax",
+      "state": "North Carolina"
+    }
+  },
+  {
+    "title": "Eastside Showdown III",
+    "slug": "eastside-showdown-3",
+    "locationId": "31",
+    "startDate": "2025-05-24",
+    "endDate": "2025-05-24",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eyes on the Prize Pre-Season II",
+    "slug": "eyes-on-the-prize-pre-season-ii",
+    "locationId": "41",
+    "startDate": "2025-05-17",
+    "endDate": "2025-05-17",
+    "location": {
+      "name": "Asheboro High School",
+      "address": "1221 South Park Street",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eastside Showdown II",
+    "slug": "eastside-showdown-iii-2",
+    "locationId": "31",
+    "startDate": "2025-05-10",
+    "endDate": "2025-05-10",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Bash II",
+    "slug": "bulldog-bash-ii",
+    "locationId": "11",
+    "startDate": "2025-05-03",
+    "endDate": "2025-05-03",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "War at the WaterTower",
+    "slug": "war-at-the-watertower",
+    "locationId": "14",
+    "startDate": "2025-04-26",
+    "endDate": "2025-04-26",
+    "location": {
+      "name": "Glenn High School",
+      "address": "1600 Union Cross Road",
+      "town": "Winston-Salem",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Grim Reaper Open",
+    "slug": "grim-reaper-open",
+    "locationId": "42",
+    "startDate": "2025-04-19",
+    "endDate": "2025-04-19",
+    "location": {
+      "name": "Grimsley High School",
+      "address": "801 N Josephine Boyd St",
+      "town": "Greensboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eastside Showdown I",
+    "slug": "eastside-showdown-ii",
+    "locationId": "31",
+    "startDate": "2025-04-12",
+    "endDate": "2025-04-12",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Iron Eagle Wrestling Challenge",
+    "slug": "iron-eagle-wrestling-challenge",
+    "locationId": "15",
+    "startDate": "2025-04-05",
+    "endDate": "2025-04-05",
+    "location": {
+      "name": "Uwharrie Charter Middle Academy",
+      "address": "5154 US 220 Business South",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Bash I",
+    "slug": "bulldog-bash-i",
+    "locationId": "11",
+    "startDate": "2025-03-22",
+    "endDate": "2025-03-22",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Team Tomahawk Open",
+    "slug": "team-tomahawk-open",
+    "locationId": "48",
+    "startDate": "2025-03-15",
+    "endDate": "2025-03-15",
+    "location": {
+      "name": "South Stokes High School",
+      "address": "1100 South Stokes High Drive",
+      "town": "Walnut Cove",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eyes on the Prize Pre-Season I",
+    "slug": "eyes-on-the-prize-pre-season-i",
+    "locationId": "41",
+    "startDate": "2025-03-08",
+    "endDate": "2025-03-08",
+    "location": {
+      "name": "Asheboro High School",
+      "address": "1221 South Park Street",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Grim Reapers Pre-Season Rumble (CANCELLED)",
+    "slug": "grim-reapers-pre-season-rumble",
+    "locationId": "42",
+    "startDate": "2024-10-12",
+    "endDate": "2024-10-12",
+    "location": {
+      "name": "Grimsley High School",
+      "address": "801 N Josephine Boyd St",
+      "town": "Greensboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Pre-Season War at the WaterTower",
+    "slug": "pre-season-war-at-the-watertower",
+    "locationId": "14",
+    "startDate": "2024-10-05",
+    "endDate": "2024-10-05",
+    "location": {
+      "name": "Glenn High School",
+      "address": "1600 Union Cross Road",
+      "town": "Winston-Salem",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "2024 Beastside Pre-Season Beatdown",
+    "slug": "2024-beastside-pre-season-beatdown",
+    "locationId": "31",
+    "startDate": "2024-09-28",
+    "endDate": "2024-09-28",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Bulldog Pre-Season Bash I",
+    "slug": "bulldog-pre-season-bash-i-2",
+    "locationId": "11",
+    "startDate": "2024-09-14",
+    "endDate": "2024-09-14",
+    "location": {
+      "name": "Trinity High School",
+      "address": "5746 Trinity HS Drive",
+      "town": "Trinity",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eyes on the Prize Pre-Season Open",
+    "slug": "eyes-on-the-prize-pre-season-open-3",
+    "locationId": "41",
+    "startDate": "2024-08-31",
+    "endDate": "2024-08-31",
+    "location": {
+      "name": "Asheboro High School",
+      "address": "1221 South Park Street",
+      "town": "Asheboro",
+      "state": "NC"
+    }
+  },
+  {
+    "title": "Eastside Showdown III",
+    "slug": "eastside-showdown-iii",
+    "locationId": "31",
+    "startDate": "2024-05-11",
+    "endDate": "2024-05-11",
+    "location": {
+      "name": "Eastern Guilford High School",
+      "address": "415 Peeden Drive",
+      "town": "Gibsonville",
+      "state": "NC"
+    }
+  }
+]
