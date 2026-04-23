@@ -86,7 +86,7 @@ export default function RegistrationForm({ eventId, eventName, eventCost }: { ev
     setIsSubmitting(false);
     
     if (result.success) {
-      setSuccessMsg(`Successfully registered ${wrestlers.length} wrestler(s)! Check the dashboard.`);
+      window.location.href = "/success";
     } else {
       alert(result.message);
     }
@@ -96,15 +96,6 @@ export default function RegistrationForm({ eventId, eventName, eventCost }: { ev
     return wrestlers.reduce((sum, w) => sum + eventCost + (w.doubleBracket ? 30 : 0), 0);
   };
 
-  if (successMsg) {
-    return (
-      <div className="glass-card" style={{ padding: "3rem", textAlign: "center", border: "2px solid var(--accent-primary)" }}>
-        <h2>Registration Complete!</h2>
-        <p style={{ color: "var(--text-secondary)", marginTop: "1rem" }}>{successMsg}</p>
-        <a href="/events" className="btn btn-primary" style={{ marginTop: "2rem" }}>Return to Events</a>
-      </div>
-    );
-  }
 
   return (
     <form action={handleSubmit} style={{ display: "grid", gap: "2rem", maxWidth: "800px" }}>

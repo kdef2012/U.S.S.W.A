@@ -65,7 +65,7 @@ export default function AnalyticsDashboard({
         >
           <option value="all">All Tournaments (Global)</option>
           {events.map(e => (
-            <option key={e.id} value={e.id}>{e.name} - {new Date(e.date || "2026-01-01").toLocaleDateString()}</option>
+            <option key={e.id} value={e.id}>{e.name} - {new Date((e.date || "2026-01-01") + "T12:00:00").toLocaleDateString()}</option>
           ))}
         </select>
       </div>

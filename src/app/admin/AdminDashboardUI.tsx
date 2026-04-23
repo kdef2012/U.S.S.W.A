@@ -21,7 +21,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
 
   // Split events into Upcoming/Current vs Archived
   const activeEvents = events.filter((e) => {
-    const d = new Date(e.date || "2026-01-01");
+    const d = new Date((e.date || "2026-01-01") + "T12:00:00");
     // Add timezone offset to avoid UTC date parsing bugs
     d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
     d.setHours(23, 59, 59, 999);
@@ -29,7 +29,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
   });
 
   const archivedEvents = events.filter((e) => {
-    const d = new Date(e.date || "2026-01-01");
+    const d = new Date((e.date || "2026-01-01") + "T12:00:00");
     // Add timezone offset
     d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
     d.setHours(23, 59, 59, 999);
@@ -166,7 +166,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
                 <div>
                   <h3 style={{ margin: 0, fontSize: "1.2rem", color: "var(--text-primary)" }}>{event.name}</h3>
                   <div style={{ color: "var(--text-secondary)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
-                    {new Date(event.date || "2026-01-01").toLocaleDateString()} • {event.location || "Location TBA"}
+                    {new Date((event.date || "2026-01-01") + "T12:00:00").toLocaleDateString()} • {event.location || "Location TBA"}
                   </div>
                   {event.image_url && (
                     <span style={{ display: "inline-block", marginTop: "0.5rem", color: "var(--accent-primary)", fontSize: "0.8rem", fontWeight: "bold", textTransform: "uppercase" }}>
@@ -221,7 +221,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
                 <div key={event.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "0.5rem" }}>
                   <div style={{ fontSize: "0.95rem", fontWeight: "bold", color: "var(--text-secondary)" }}>{event.name}</div>
                   <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
-                    {new Date(event.date || "2026-01-01").toLocaleDateString()}
+                    {new Date((event.date || "2026-01-01") + "T12:00:00").toLocaleDateString()}
                   </div>
                 </div>
               ))}

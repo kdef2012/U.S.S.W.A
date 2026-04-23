@@ -44,7 +44,7 @@ export default function AdminEventList({ events }: { events: any[] }) {
           <div>
             <h3 style={{ margin: 0, fontSize: "1.1rem" }}>{event.title}</h3>
             <span style={{ color: "var(--text-secondary)", fontSize: "0.9rem" }}>
-              {new Date(event.startDate).toLocaleDateString()}
+              {new Date(event.startDate + "T12:00:00").toLocaleDateString()}
             </span>
             {event.imageUrl && (
               <span style={{ marginLeft: "1rem", color: "var(--accent-primary)", fontSize: "0.8rem", textTransform: "uppercase" }}>

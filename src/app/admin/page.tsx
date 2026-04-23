@@ -5,6 +5,8 @@ export const metadata = {
   title: "Admin Dashboard | U.S.S.W.A",
 };
 
+export const revalidate = 0;
+
 export default async function AdminDashboard() {
   const { data: eventsData } = await supabase.from('events').select('*').order('date', { ascending: true });
   const { data: registrations } = await supabase.from('registrations').select('*');
