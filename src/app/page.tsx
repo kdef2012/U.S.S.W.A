@@ -13,6 +13,35 @@ export default async function Home() {
 
   const featuredEvents = eventsData || [];
 
+  // Fetch all registrations and wrestlers for live counts
+  const { data: registrations } = await supabase.from('registrations').select('event_id, division, weight_class, wrestler_id');
+  const { data: wrestlers } = await supabase.from('wrestlers').select('id, first_name, last_name');
+
+  const getEventCount = (eventId: string) => {
+    const eventRegs = (registrations || []).filter(r => r.event_id === eventId && r.division !== "Multiple Attendees");
+    
+    const divisionsMap: Record<string, any[]> = {};
+    eventRegs.forEach(reg => {
+      const wrestler = (wrestlers || []).find(w => w.id === reg.wrestler_id);
+      if (!wrestler) return;
+
+      if (!divisionsMap[reg.division]) divisionsMap[reg.division] = [];
+      
+      const isDuplicate = divisionsMap[reg.division].some(existing => {
+        if (existing.weight_class !== reg.weight_class) return false;
+        if (existing.wrestler_id === wrestler.id) return true;
+        return existing.first_name.trim().toLowerCase() === wrestler.first_name.trim().toLowerCase() && 
+               existing.last_name.trim().toLowerCase() === wrestler.last_name.trim().toLowerCase();
+      });
+
+      if (!isDuplicate) {
+        divisionsMap[reg.division].push({ ...reg, first_name: wrestler.first_name, last_name: wrestler.last_name });
+      }
+    });
+
+    return Object.values(divisionsMap).reduce((sum, arr) => sum + arr.length, 0);
+  };
+
   return (
     <div>
       <section className="hero">
@@ -45,15 +74,34 @@ export default async function Home() {
       <section className="container">
         <h2>Featured Tournaments</h2>
         <div className="event-grid">
-          {featuredEvents.map((event) => (
+          {featuredEvents.map((event) => {
+            const count = getEventCount(event.id);
+            return (
             <div className="glass-card" key={event.id} style={{ '--card-bg-image': event.image_url ? `url(${event.image_url})` : undefined } as React.CSSProperties}>
-              <span className="event-date">
-                {new Date(event.date).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric'
-                }).toUpperCase()}
-              </span>
+              
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
+                <span className="event-date">
+                  {new Date(event.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  }).toUpperCase()}
+                </span>
+                
+                <div style={{ 
+                  display: "flex", alignItems: "center", gap: "0.5rem", 
+                  background: "rgba(16, 185, 129, 0.15)", border: "1px solid rgba(16, 185, 129, 0.3)", 
+                  padding: "0.25rem 0.75rem", borderRadius: "100px", 
+                  color: "#34d399", fontWeight: "bold", fontSize: "0.85rem",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  {count} {count === 1 ? 'Wrestler' : 'Wrestlers'}
+                </div>
+              </div>
               <h3>{event.name}</h3>
               <div className="event-location">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -66,11 +114,29 @@ export default async function Home() {
                   </a>
                 ) : 'Location TBA'}
               </div>
-              <a href={`/events/${event.id}`} className="btn btn-secondary" style={{ width: '100%' }}>
-                Register Now
-              </a>
+              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem' }}>
+                <a href={`/events/${event.id}`} className="btn btn-secondary" style={{ flex: 1, textAlign: 'center' }}>
+                  Register Now
+                </a>
+                <a href={`/events/${event.id}/matrix`} className="btn" style={{ 
+                  background: 'rgba(255,255,255,0.1)', 
+                  border: '1px solid rgba(255,255,255,0.2)', 
+                  color: 'white',
+                  textDecoration: 'none',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '8px',
+                  fontWeight: 'bold',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.2s ease'
+                }}>
+                  Matrix
+                </a>
+              </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     </div>

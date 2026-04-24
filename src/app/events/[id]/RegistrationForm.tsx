@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { submitRegistration } from "@/app/actions/register";
 
 const divisions = {
@@ -57,7 +57,11 @@ export default function RegistrationForm({ eventId, eventName, eventCost }: { ev
     setWrestlers(prev => prev.map(w => w.id === id ? { ...w, isOpen: !w.isOpen } : w));
   };
 
+  const isSubmittingRef = useRef(false);
+
   const handleSubmit = async (formData: FormData) => {
+    if (isSubmittingRef.current) return;
+
     // Validation
     if (!waiverAgreed || !dataConsent) {
       alert("You must agree to the waiver and data consent to register.");
@@ -76,19 +80,26 @@ export default function RegistrationForm({ eventId, eventName, eventCost }: { ev
       }
     }
 
+    isSubmittingRef.current = true;
     setIsSubmitting(true);
     formData.append("eventId", eventId);
     formData.append("eventName", eventName);
     formData.append("eventCost", eventCost.toString());
     formData.append("wrestlers", JSON.stringify(wrestlers));
     
-    const result = await submitRegistration(formData);
-    setIsSubmitting(false);
-    
-    if (result.success) {
-      window.location.href = "/success";
-    } else {
-      alert(result.message);
+    try {
+      const result = await submitRegistration(formData);
+      if (result.success) {
+        window.location.href = "/success";
+      } else {
+        alert(result.message);
+        isSubmittingRef.current = false;
+        setIsSubmitting(false);
+      }
+    } catch (e) {
+      alert("An error occurred during submission.");
+      isSubmittingRef.current = false;
+      setIsSubmitting(false);
     }
   };
 

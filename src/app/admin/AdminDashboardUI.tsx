@@ -219,7 +219,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
                 
                 <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", marginTop: "1rem" }}>
                   <div style={{ fontWeight: "bold", color: "var(--accent-primary)", fontSize: "1.2rem", paddingRight: "1rem" }}>
-                    ${registrations.filter(r => r.event_id === event.id).reduce((sum, r) => sum + Number(r.fee || 35), 0).toLocaleString()}
+                    ${registrations.filter(r => r.event_id === event.id && r.division !== 'Multiple Attendees').reduce((sum, r) => sum + Number(r.fee || 35), 0).toLocaleString()}
                   </div>
                   {uploadingId === event.id ? (
                     <div className="btn btn-secondary" style={{ pointerEvents: "none", color: "var(--accent-primary)" }}>
