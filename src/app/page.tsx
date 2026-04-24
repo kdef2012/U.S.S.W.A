@@ -66,7 +66,7 @@ export default async function Home() {
             boxShadow: "0 4px 12px rgba(220, 38, 38, 0.05)"
           }}>
             <strong style={{ display: "block", marginBottom: "0.25rem", color: "#f87171", fontSize: "1.05rem" }}>⚠️ Important Notice for Coaches</strong>
-            All coaches must have a current USA Wrestling Leadership card and a completed background check to be allowed on the mat.
+            All coaches are required to submit a background check for coaching band and mat access. No exceptions! Coaching cards from other organizations are NOT accepted in lieu of this requirement. On staff coaches at a high school or middle school as verified by the school are exempted from this requirement. Email mauriceatwood@aol.com if you have any questions.
           </div>
         </div>
       </section>
