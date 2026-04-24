@@ -264,7 +264,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
       {isBuilderOpen && (
         <EventBuilderModal 
           onClose={() => setIsBuilderOpen(false)} 
-          existingEvent={eventToEdit}
+          editEvent={eventToEdit}
         />
       )}
 
