@@ -255,6 +255,21 @@ export default function RegistrationForm({ eventId, eventName, eventCost }: { ev
         </div>
       </div>
 
+      {/* Coaching Safety Warning */}
+      <div style={{
+        background: "rgba(239, 68, 68, 0.1)",
+        border: "2px solid var(--accent-secondary)",
+        padding: "1.5rem",
+        borderRadius: "8px",
+        color: "#fca5a5",
+        fontWeight: "bold",
+        fontSize: "1.1rem",
+        textAlign: "center",
+        lineHeight: "1.5"
+      }}>
+        All coaches are required to submit a background check for coaching band and mat access. No exceptions! Coaching cards from other organizations are NOT accepted in lieu of this requirement. On staff coaches at a high school or middle school as verified by the school are exempted from this requirement. Email mauriceatwood@aol.com if you have any questions
+      </div>
+
       {/* Liability Waiver */}
       <div className="glass-card" style={{ padding: "1.5rem" }}>
         <h3 style={{ marginBottom: "1rem", color: "var(--accent-primary)" }}>Release of Liability</h3>

@@ -1,0 +1,25 @@
+﻿<USER_REQUEST>
+Name :	Kynan Massie
+Email :	kynan.massie@gmail.com
+Address :	n/a
+Address Line 2 :	n/a
+City/Town :	n/a
+State/County :	n/a
+Zip/Post Code :	n/a
+Country :	n/a
+Phone :	2769711845
+Fax :	n/a
+Company :	n/a
+Communications Consent :	Yes
+Booking Details 
+Status : Approved  
+Ticket Type	Spaces	Price
+Standard Ticket	2	$70.00
+Attendee 1
+
+Wrestler First Name	Kyson
+Wrestlers Last Name	Massie
+Team	Pilot Mountain Wrestling Club
+Division	HIGH SCHOOL
+Weight Class	HS-106
+<truncated 110100 bytes>

@@ -7,7 +7,8 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = await cookies();
-  const isAdmin = cookieStore.get("admin_auth")?.value === "true";
+  const authValue = cookieStore.get("admin_auth")?.value;
+  const isAdmin = authValue === "admin" || authValue === "superadmin";
 
   if (!isAdmin) {
     redirect("/"); // Kick them out to the homepage if they aren't authenticated

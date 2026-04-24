@@ -7,14 +7,21 @@ import { logoutAdmin } from "@/app/actions/auth";
 import EventBuilderModal from "@/components/EventBuilderModal";
 import RolodexView from "./RolodexView";
 import AnalyticsDashboard from "./AnalyticsDashboard";
+import RegistrationLogModal from "./RegistrationLogModal";
 
-export default function AdminDashboardUI({ events, registrations, parents, wrestlers }: { events: any[], registrations: any[], parents: any[], wrestlers: any[] }) {
+import { createAdminPin } from "@/app/actions/auth";
+
+export default function AdminDashboardUI({ events, registrations, parents, wrestlers, userRole }: { events: any[], registrations: any[], parents: any[], wrestlers: any[], userRole: string }) {
   const [uploadingId, setUploadingId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
   const [eventToEdit, setEventToEdit] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<"command_center" | "rolodex" | "analytics">("command_center");
   const [analyticsEventId, setAnalyticsEventId] = useState<string>("all");
+  const [logEventId, setLogEventId] = useState<string | null>(null);
+  const [isAddUserOpen, setIsAddUserOpen] = useState(false);
+  const [newPin, setNewPin] = useState("");
+  const [pinMessage, setPinMessage] = useState("");
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -83,6 +90,19 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
     window.location.href = "/";
   };
 
+  const handleAddUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPinMessage("");
+    const res = await createAdminPin(newPin);
+    if (res.success) {
+      setPinMessage("Admin user added successfully!");
+      setNewPin("");
+      setTimeout(() => setIsAddUserOpen(false), 2000);
+    } else {
+      setPinMessage(res.message || "Failed to add user");
+    }
+  };
+
   return (
     <div className="container" style={{ marginTop: "3rem", maxWidth: "1400px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
@@ -94,12 +114,19 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
         </div>
         <div style={{ display: "flex", gap: "1rem" }}>
           {activeTab === "command_center" && (
-            <button onClick={() => {
-              setEventToEdit(null);
-              setIsBuilderOpen(true);
-            }} className="btn btn-primary">
-              + Create New Event
-            </button>
+            <>
+              {userRole === "superadmin" && (
+                <button onClick={() => setIsAddUserOpen(true)} className="btn" style={{ background: "var(--accent-secondary)", color: "white", border: "none" }}>
+                  + Add User
+                </button>
+              )}
+              <button onClick={() => {
+                setEventToEdit(null);
+                setIsBuilderOpen(true);
+              }} className="btn btn-primary">
+                + Create New Event
+              </button>
+            </>
           )}
           <button onClick={handleLogout} className="btn btn-secondary">
             Logout
@@ -194,6 +221,9 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
                       />
                     </label>
                   )}
+                  <button onClick={() => setLogEventId(event.id)} className="btn btn-secondary" style={{ fontSize: "0.8rem", padding: "0.5rem 1rem", borderColor: "#a855f7", color: "#a855f7" }}>
+                    Reg Log
+                  </button>
                   <button onClick={() => handleViewAnalytics(event.id)} className="btn btn-secondary" style={{ fontSize: "0.8rem", padding: "0.5rem 1rem", borderColor: "#10b981", color: "#10b981" }}>
                     Analytics
                   </button>
@@ -230,6 +260,57 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
         </div>
       </div>
         </>
+      )}
+      {isBuilderOpen && (
+        <EventBuilderModal 
+          onClose={() => setIsBuilderOpen(false)} 
+          existingEvent={eventToEdit}
+        />
+      )}
+
+      {isAddUserOpen && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
+          background: "rgba(0,0,0,0.8)", zIndex: 1000,
+          display: "flex", alignItems: "center", justifyContent: "center"
+        }}>
+          <div className="glass-card" style={{ padding: "2rem", width: "100%", maxWidth: "400px" }}>
+            <h2 style={{ marginBottom: "1rem", color: "var(--accent-primary)" }}>Add New Admin</h2>
+            <form onSubmit={handleAddUser}>
+              <div className="form-group">
+                <label className="form-label">Create 4-Digit PIN</label>
+                <input 
+                  type="text" 
+                  pattern="[0-9]{4}"
+                  maxLength={4}
+                  className="form-input" 
+                  value={newPin}
+                  onChange={(e) => setNewPin(e.target.value)}
+                  placeholder="e.g. 1234"
+                  required 
+                />
+              </div>
+              {pinMessage && (
+                <div style={{ marginBottom: "1rem", color: pinMessage.includes("success") ? "lime" : "var(--accent-secondary)", fontWeight: "bold" }}>
+                  {pinMessage}
+                </div>
+              )}
+              <div style={{ display: "flex", gap: "1rem", justifyContent: "flex-end" }}>
+                <button type="button" className="btn btn-secondary" onClick={() => setIsAddUserOpen(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary">Save User</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {logEventId && (
+        <RegistrationLogModal 
+          event={events.find(e => e.id === logEventId)}
+          registrations={registrations}
+          wrestlers={wrestlers}
+          onClose={() => setLogEventId(null)}
+        />
       )}
     </div>
   );
