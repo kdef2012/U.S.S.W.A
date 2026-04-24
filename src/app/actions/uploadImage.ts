@@ -20,9 +20,10 @@ export async function uploadEventImage(formData: FormData) {
     // 1. Upload to Supabase Storage
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('event-logos')
-      .upload(filename, file, {
+      .upload(filename, buffer, {
         cacheControl: '3600',
-        upsert: false
+        upsert: false,
+        contentType: file.type
       });
 
     if (uploadError) {
