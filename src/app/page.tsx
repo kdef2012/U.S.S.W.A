@@ -16,14 +16,29 @@ export default async function Home() {
   return (
     <div>
       <section className="hero">
-        <div className="container animate-fade-in">
+        <div className="container animate-fade-in" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <h1>Welcome to U.S.S.W.A</h1>
           <p className="hero-subtitle">
             We offer modified scholastic-style wrestling tournaments at centrally located venues in North Carolina.
           </p>
-          <a href="/events" className="btn btn-primary">
+          <a href="/events" className="btn btn-primary" style={{ marginBottom: "2.5rem" }}>
             View All Tournaments
           </a>
+          
+          <div style={{
+            background: "rgba(220, 38, 38, 0.1)",
+            border: "1px solid rgba(220, 38, 38, 0.3)",
+            color: "#fca5a5",
+            padding: "1rem 1.5rem",
+            borderRadius: "8px",
+            maxWidth: "700px",
+            fontSize: "0.95rem",
+            textAlign: "center",
+            boxShadow: "0 4px 12px rgba(220, 38, 38, 0.05)"
+          }}>
+            <strong style={{ display: "block", marginBottom: "0.25rem", color: "#f87171", fontSize: "1.05rem" }}>⚠️ Important Notice for Coaches</strong>
+            All coaches must have a current USA Wrestling Leadership card and a completed background check to be allowed on the mat.
+          </div>
         </div>
       </section>
 
