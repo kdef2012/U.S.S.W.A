@@ -71,13 +71,15 @@ export default function RegistrationLogModal({ event, registrations, wrestlers, 
       });
     });
 
-    const encodedUri = encodeURI(csvContent);
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
+    link.setAttribute("href", url);
     link.setAttribute("download", `${event.name.replace(/\s+/g, '_')}_Registration_Log_${selectedDivision}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const handlePrint = () => {
