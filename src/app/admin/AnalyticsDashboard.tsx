@@ -18,24 +18,55 @@ export default function AnalyticsDashboard({
   const [selectedEventId, setSelectedEventId] = useState<string>(initialEventId);
 
   // Filter registrations based on selection
-  const activeRegistrations = selectedEventId === "all" 
+  const activeRegistrationsRaw = selectedEventId === "all" 
     ? registrations 
     : registrations.filter(r => r.event_id === selectedEventId);
+
+  // Filter out 'Multiple Attendees' stub records (they are just payment placeholders)
+  const activeRegistrationsWithoutMultiples = activeRegistrationsRaw.filter(r => r.division !== "Multiple Attendees");
+
+  // Deduplicate exactly like the Registration Log print layout
+  // (Filter out accidental double-clicks for the EXACT same wrestler in the EXACT same weight class)
+  const activeRegistrations: any[] = [];
+  activeRegistrationsWithoutMultiples.forEach(reg => {
+    const wrestler = wrestlers.find(w => w.id === reg.wrestler_id);
+    if (!wrestler) {
+      // Fallback if wrestler deleted
+      activeRegistrations.push(reg);
+      return;
+    }
+
+    const isDuplicate = activeRegistrations.some(existing => {
+      if (existing.event_id !== reg.event_id) return false;
+      if (existing.division !== reg.division) return false;
+      if (existing.weight_class !== reg.weight_class) return false;
+      
+      if (existing.wrestler_id === reg.wrestler_id) return true;
+      
+      const existingWrestler = wrestlers.find(w => w.id === existing.wrestler_id);
+      if (!existingWrestler) return false;
+      
+      return existingWrestler.first_name.trim().toLowerCase() === wrestler.first_name.trim().toLowerCase() && 
+             existingWrestler.last_name.trim().toLowerCase() === wrestler.last_name.trim().toLowerCase();
+    });
+
+    if (!isDuplicate) {
+      activeRegistrations.push(reg);
+    }
+  });
 
   // --- KPI Calculations ---
   const totalRegistrations = activeRegistrations.length;
   
   // Financials
-  // In a real app, fee is usually a number. If it's a string, cast it.
   const totalRevenue = activeRegistrations.reduce((sum, r) => sum + Number(r.fee || 35), 0);
-  // Estimate double brackets: any fee > 35 is likely a double bracket fee ($65 total), or if we explicitly track it.
-  // Actually, we added `double_bracket_division` to the DB. Since it might not be fully populated yet, 
-  // we can also estimate double brackets based on fees. For now, let's look for fees > 35 or fees == 30.
-  const doubleBracketCount = activeRegistrations.filter(r => Number(r.fee) > 35 || Number(r.fee) === 30).length;
   
   // Participant Demographics
   const uniqueWrestlerIds = new Set(activeRegistrations.map(r => r.wrestler_id));
   const uniqueWrestlersCount = uniqueWrestlerIds.size;
+  
+  // Double Brackets Calculation (Total Registrations minus Unique Wrestlers)
+  const doubleBracketCount = totalRegistrations - uniqueWrestlersCount;
   
   // Division Breakdown
   const divisionCounts: Record<string, number> = {};
