@@ -105,7 +105,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
 
   return (
     <div className="container" style={{ marginTop: "3rem", maxWidth: "1400px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem", flexWrap: "wrap", gap: "1rem" }}>
         <div>
           <h1 style={{ marginBottom: "0.5rem" }}>Admin Portal</h1>
           <p style={{ color: "var(--text-secondary)", fontSize: "1.2rem", margin: 0 }}>
@@ -181,7 +181,22 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
 
       {activeTab === "command_center" && (
         <>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 350px", gap: "3rem" }}>
+          <style dangerouslySetInnerHTML={{__html: `
+            .dashboard-grid {
+              display: grid;
+              grid-template-columns: 1fr 350px;
+              gap: 3rem;
+            }
+            @media (max-width: 900px) {
+              .dashboard-grid {
+                grid-template-columns: 1fr;
+              }
+              .tabs-bar {
+                flex-wrap: wrap;
+              }
+            }
+          `}} />
+          <div className="dashboard-grid">
         {/* Main Area: Upcoming Events */}
         <div>
           <h2 style={{ borderBottom: "1px solid var(--border-color)", paddingBottom: "1rem", marginBottom: "1.5rem" }}>
@@ -189,8 +204,8 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
           </h2>
           <div style={{ display: "grid", gap: "1rem" }}>
             {activeEvents.map((event) => (
-              <div key={event.id} className="glass-card" style={{ padding: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <div>
+              <div key={event.id} className="glass-card" style={{ padding: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                <div style={{ flex: "1 1 100%" }}>
                   <h3 style={{ margin: 0, fontSize: "1.2rem", color: "var(--text-primary)" }}>{event.name}</h3>
                   <div style={{ color: "var(--text-secondary)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
                     {new Date((event.date || "2026-01-01") + "T12:00:00").toLocaleDateString()} • {event.location || "Location TBA"}
@@ -202,7 +217,7 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
                   )}
                 </div>
                 
-                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", marginTop: "1rem" }}>
                   <div style={{ fontWeight: "bold", color: "var(--accent-primary)", fontSize: "1.2rem", paddingRight: "1rem" }}>
                     ${registrations.filter(r => r.event_id === event.id).reduce((sum, r) => sum + Number(r.fee || 35), 0).toLocaleString()}
                   </div>
