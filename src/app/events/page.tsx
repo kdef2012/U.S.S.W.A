@@ -88,6 +88,7 @@ export default function EventsPage() {
             <div className="glass-card" key={event.id} style={{ '--card-bg-image': event.image_url ? `url(${event.image_url})` : undefined } as React.CSSProperties}>
               <span className="event-date">
                 {new Date(event.date).toLocaleDateString("en-US", {
+                  timeZone: 'UTC',
                   month: "short",
                   day: "numeric",
                   year: "numeric",

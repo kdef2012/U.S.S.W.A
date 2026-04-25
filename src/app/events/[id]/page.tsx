@@ -16,6 +16,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
   }
 
   const date = new Date(event.date || "2026-01-01").toLocaleDateString("en-US", {
+    timeZone: 'UTC',
     weekday: "long",
     year: "numeric",
     month: "long",

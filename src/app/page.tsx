@@ -82,6 +82,7 @@ export default async function Home() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
                 <span className="event-date">
                   {new Date(event.date).toLocaleDateString('en-US', {
+                    timeZone: 'UTC',
                     month: 'short',
                     day: 'numeric',
                     year: 'numeric'
