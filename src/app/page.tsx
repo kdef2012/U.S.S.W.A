@@ -1,5 +1,7 @@
 import { supabase } from "@/utils/supabase/client";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const today = new Date().toISOString().split('T')[0];
   
