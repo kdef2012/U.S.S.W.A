@@ -17,10 +17,19 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
     notFound();
   }
 
-  const date = new Date(event.date || "2026-01-01").toLocaleDateString("en-US", {
+  const eventDateObj = new Date(event.date || "2026-01-01");
+  const date = eventDateObj.toLocaleDateString("en-US", {
     timeZone: 'UTC',
     weekday: "long",
     year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const deadlineDateObj = new Date(eventDateObj);
+  deadlineDateObj.setUTCDate(deadlineDateObj.getUTCDate() - 1);
+  const deadlineDate = deadlineDateObj.toLocaleDateString("en-US", {
+    timeZone: 'UTC',
     month: "long",
     day: "numeric",
   });
@@ -66,7 +75,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
               <li>• $50 Walk-in fee</li>
               <li>• $10 Spectator fee</li>
               <li style={{ marginTop: "0.5rem", color: "var(--accent-secondary)", fontWeight: "bold" }}>Checks are not accepted.</li>
-              <li style={{ marginTop: "0.5rem" }}>Wrestlers MUST be pre-registered by 5PM on April 24th.</li>
+              <li style={{ marginTop: "0.5rem" }}>Wrestlers MUST be pre-registered by 5PM on {deadlineDate}.</li>
               <li>Final registration and weigh-ins are 8-9 AM the morning of the tournament.</li>
               <li>Wrestling will begin as close to 10 AM as we can get.</li>
             </ul>
