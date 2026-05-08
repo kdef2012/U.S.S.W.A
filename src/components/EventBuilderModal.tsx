@@ -20,6 +20,13 @@ export default function EventBuilderModal({
     if (editEvent?.id) {
       formData.append("id", editEvent.id);
     }
+    
+    // Convert local datetime to UTC before sending to server
+    const rawCutoff = formData.get("cutoff_date") as string;
+    if (rawCutoff) {
+      formData.set("cutoff_date", new Date(rawCutoff).toISOString());
+    }
+
     const result = await createEvent(formData);
     
     setIsSubmitting(false);
@@ -139,7 +146,7 @@ export default function EventBuilderModal({
               <input 
                 type="datetime-local"
                 name="cutoff_date"
-                defaultValue={editEvent?.cutoff_date ? new Date(editEvent.cutoff_date).toISOString().slice(0, 16) : ""}
+                defaultValue={editEvent?.cutoff_date ? new Date(new Date(editEvent.cutoff_date).getTime() - new Date(editEvent.cutoff_date).getTimezoneOffset() * 60000).toISOString().slice(0, 16) : ""}
                 style={{ width: "100%", padding: "0.75rem", borderRadius: "8px", border: "1px solid var(--border-color)", background: "rgba(255,255,255,0.05)", color: "white" }}
               />
             </div>
