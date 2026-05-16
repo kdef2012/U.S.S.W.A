@@ -14,7 +14,8 @@ export default function EventBuilderModal({
 
   const formatForInput = (dateString: string) => {
     if (!dateString) return "";
-    const date = new Date(dateString);
+    const safeStr = dateString.endsWith('Z') || dateString.includes('+') ? dateString : dateString + 'Z';
+    const date = new Date(safeStr);
     const tzString = date.toLocaleString('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
     const [datePart, timePart] = tzString.split(', ');
     const [month, day, year] = datePart.split('/');

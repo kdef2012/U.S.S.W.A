@@ -104,11 +104,15 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2rem" }}>
           <div>
             <h2 style={{ marginBottom: "1.5rem" }}>Register Now</h2>
-            {event.cutoff_date && new Date() > new Date(event.cutoff_date) ? (
+            {(() => {
+              if (!event.cutoff_date) return false;
+              const safeStr = event.cutoff_date.endsWith('Z') || event.cutoff_date.includes('+') ? event.cutoff_date : event.cutoff_date + 'Z';
+              return new Date() > new Date(safeStr);
+            })() ? (
               <div style={{ background: "rgba(255,0,0,0.1)", padding: "2rem", borderRadius: "8px", border: "1px solid rgba(255,0,0,0.3)", textAlign: "center" }}>
                 <h3 style={{ color: "var(--accent-secondary)", marginBottom: "0.5rem" }}>Registration Closed</h3>
                 <p style={{ color: "var(--text-secondary)" }}>
-                  The booking cutoff time for this event has passed ({new Date(event.cutoff_date).toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "long", timeStyle: "short" })} ET).
+                  The booking cutoff time for this event has passed ({new Date(event.cutoff_date.endsWith('Z') || event.cutoff_date.includes('+') ? event.cutoff_date : event.cutoff_date + 'Z').toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "long", timeStyle: "short" })} ET).
                 </p>
               </div>
             ) : (

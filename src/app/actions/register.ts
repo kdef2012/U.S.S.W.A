@@ -29,8 +29,11 @@ export async function submitRegistration(formData: FormData) {
       return { success: false, message: "Could not fetch event data." };
     }
 
-    if (eventData.cutoff_date && new Date(eventData.cutoff_date) < new Date()) {
-      return { success: false, message: "The registration deadline for this event has passed." };
+    if (eventData.cutoff_date) {
+      const safeStr = eventData.cutoff_date.endsWith('Z') || eventData.cutoff_date.includes('+') ? eventData.cutoff_date : eventData.cutoff_date + 'Z';
+      if (new Date(safeStr) < new Date()) {
+        return { success: false, message: "The registration deadline for this event has passed." };
+      }
     }
 
     if (eventData.max_spaces_per_booking && wrestlers.length > eventData.max_spaces_per_booking) {
