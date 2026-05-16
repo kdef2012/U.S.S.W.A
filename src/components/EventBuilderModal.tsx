@@ -12,6 +12,17 @@ export default function EventBuilderModal({
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const formatForInput = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    const tzString = date.toLocaleString('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+    const [datePart, timePart] = tzString.split(', ');
+    const [month, day, year] = datePart.split('/');
+    let [hour, minute] = timePart.split(':');
+    if (hour === '24') hour = '00';
+    return `${year}-${month}-${day}T${hour}:${minute}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -24,7 +35,11 @@ export default function EventBuilderModal({
     // Convert local datetime to UTC before sending to server
     const rawCutoff = formData.get("cutoff_date") as string;
     if (rawCutoff) {
-      formData.set("cutoff_date", new Date(rawCutoff).toISOString());
+      const d = new Date(rawCutoff);
+      const isEDT = d.getMonth() > 2 && d.getMonth() < 10;
+      const offset = isEDT ? "-04:00" : "-05:00";
+      const utcIso = new Date(rawCutoff + offset).toISOString();
+      formData.set("cutoff_date", utcIso);
     }
 
     const result = await createEvent(formData);
@@ -142,11 +157,11 @@ export default function EventBuilderModal({
             </div>
 
             <div>
-              <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "bold" }}>Booking Cut-Off Date & Time (Optional)</label>
+              <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "bold" }}>Booking Cut-Off Date & Time (Eastern Time)</label>
               <input 
                 type="datetime-local"
                 name="cutoff_date"
-                defaultValue={editEvent?.cutoff_date ? new Date(new Date(editEvent.cutoff_date).getTime() - new Date(editEvent.cutoff_date).getTimezoneOffset() * 60000).toISOString().slice(0, 16) : ""}
+                defaultValue={editEvent?.cutoff_date ? formatForInput(editEvent.cutoff_date) : ""}
                 style={{ width: "100%", padding: "0.75rem", borderRadius: "8px", border: "1px solid var(--border-color)", background: "rgba(255,255,255,0.05)", color: "white" }}
               />
             </div>
