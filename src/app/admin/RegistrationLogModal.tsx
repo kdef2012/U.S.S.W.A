@@ -50,8 +50,7 @@ export default function RegistrationLogModal({ event, registrations, wrestlers, 
 
   // Prepare CSV Export
   const handleDownloadCSV = () => {
-    let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "Division,Weight Class,First Name,Last Name,Team/Club,Parent Email,Parent Phone\n";
+    let csvContent = "Division,Weight Class,First Name,Last Name,Team/Club,Parent Email,Parent Phone\n";
 
     filteredDivisions.forEach(div => {
       const divisionRegs = divisionsMap[div];
