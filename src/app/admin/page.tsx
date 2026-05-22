@@ -8,11 +8,25 @@ export const metadata = {
 
 export const revalidate = 0;
 
+async function fetchAll(table: string) {
+  let allData: any[] = [];
+  let from = 0;
+  const step = 1000;
+  while (true) {
+    const { data, error } = await supabase.from(table).select('*').range(from, from + step - 1);
+    if (error || !data || data.length === 0) break;
+    allData = [...allData, ...data];
+    if (data.length < step) break;
+    from += step;
+  }
+  return allData;
+}
+
 export default async function AdminDashboard() {
   const { data: eventsData } = await supabase.from('events').select('*').order('date', { ascending: true });
-  const { data: registrations } = await supabase.from('registrations').select('*');
-  const { data: parents } = await supabase.from('parents').select('*');
-  const { data: wrestlers } = await supabase.from('wrestlers').select('*');
+  const registrations = await fetchAll('registrations');
+  const parents = await fetchAll('parents');
+  const wrestlers = await fetchAll('wrestlers');
 
   const cookieStore = await cookies();
   const userRole = cookieStore.get("admin_auth")?.value || "admin";

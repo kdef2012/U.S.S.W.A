@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function RegistrationLogModal({ event, registrations, wrestlers, onClose }: { event: any, registrations: any[], wrestlers: any[], onClose: () => void }) {
+export default function RegistrationLogModal({ event, registrations, wrestlers, parents, onClose }: { event: any, registrations: any[], wrestlers: any[], parents: any[], onClose: () => void }) {
   const [selectedDivision, setSelectedDivision] = useState<string>("All");
 
   // Get registrations for this specific event (excluding Multiple Attendees placeholders)
@@ -51,7 +51,7 @@ export default function RegistrationLogModal({ event, registrations, wrestlers, 
   // Prepare CSV Export
   const handleDownloadCSV = () => {
     let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "Division,Weight Class,First Name,Last Name,Team/Club\n";
+    csvContent += "Division,Weight Class,First Name,Last Name,Team/Club,Parent Email,Parent Phone\n";
 
     filteredDivisions.forEach(div => {
       const divisionRegs = divisionsMap[div];
@@ -60,12 +60,18 @@ export default function RegistrationLogModal({ event, registrations, wrestlers, 
       divisionRegs.sort((a, b) => a.weight_class.localeCompare(b.weight_class));
 
       divisionRegs.forEach(reg => {
+        const parent = parents.find(p => p.id === reg.wrestler.parent_id);
+        const parentEmail = parent ? parent.email : "N/A";
+        const parentPhone = parent ? parent.phone : "N/A";
+
         const row = [
           div,
           reg.weight_class,
           reg.wrestler.first_name,
           reg.wrestler.last_name,
-          reg.wrestler.team || "N/A"
+          reg.wrestler.team || "N/A",
+          parentEmail,
+          parentPhone
         ].map(e => `"${e}"`).join(",");
         csvContent += row + "\n";
       });
