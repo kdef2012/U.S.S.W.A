@@ -324,7 +324,6 @@ export default function AdminDashboardUI({ events, registrations, parents, wrest
           event={events.find(e => e.id === logEventId)}
           registrations={registrations}
           wrestlers={wrestlers}
-          parents={parents}
           onClose={() => setLogEventId(null)}
         />
       )}

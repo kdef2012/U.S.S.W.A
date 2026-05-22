@@ -2,20 +2,6 @@ import { supabase } from "@/utils/supabase/client";
 
 export const dynamic = "force-dynamic";
 
-async function fetchAll(table: string, selectFields = '*') {
-  let allData: any[] = [];
-  let from = 0;
-  const step = 1000;
-  while (true) {
-    const { data, error } = await supabase.from(table).select(selectFields).range(from, from + step - 1);
-    if (error || !data || data.length === 0) break;
-    allData = [...allData, ...data];
-    if (data.length < step) break;
-    from += step;
-  }
-  return allData;
-}
-
 export default async function Home() {
   const today = new Date().toISOString().split('T')[0];
   
@@ -30,8 +16,8 @@ export default async function Home() {
   const featuredEvents = eventsData || [];
 
   // Fetch all registrations and wrestlers for live counts
-  const registrations = await fetchAll('registrations', 'event_id, division, weight_class, wrestler_id');
-  const wrestlers = await fetchAll('wrestlers', 'id, first_name, last_name');
+  const { data: registrations } = await supabase.from('registrations').select('event_id, division, weight_class, wrestler_id');
+  const { data: wrestlers } = await supabase.from('wrestlers').select('id, first_name, last_name');
 
   const getEventCount = (eventId: string) => {
     const eventRegs = (registrations || []).filter(r => r.event_id === eventId && r.division !== "Multiple Attendees");

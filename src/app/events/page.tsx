@@ -10,29 +10,15 @@ export default function EventsPage() {
   const [wrestlers, setWrestlers] = useState<any[]>([]);
 
   useEffect(() => {
-    async function fetchAll(table: string, selectFields = '*') {
-      let allData: any[] = [];
-      let from = 0;
-      const step = 1000;
-      while (true) {
-        const { data, error } = await supabase.from(table).select(selectFields).range(from, from + step - 1);
-        if (error || !data || data.length === 0) break;
-        allData = [...allData, ...data];
-        if (data.length < step) break;
-        from += step;
-      }
-      return allData;
-    }
-
     async function fetchEvents() {
       const { data } = await supabase.from('events').select('*').order('date', { ascending: true });
       if (data) setEventsData(data);
       
-      const regsData = await fetchAll('registrations', 'event_id, division, weight_class, wrestler_id');
-      setRegistrations(regsData);
+      const { data: regsData } = await supabase.from('registrations').select('event_id, division, weight_class, wrestler_id');
+      if (regsData) setRegistrations(regsData);
 
-      const wrestlersData = await fetchAll('wrestlers', 'id, first_name, last_name');
-      setWrestlers(wrestlersData);
+      const { data: wrestlersData } = await supabase.from('wrestlers').select('id, first_name, last_name');
+      if (wrestlersData) setWrestlers(wrestlersData);
     }
     fetchEvents();
   }, []);
