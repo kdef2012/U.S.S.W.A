@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/utils/supabase/client";
+import { expandDoubleBrackets } from "@/utils/expandDoubleBrackets";
 
 export default function EventsPage() {
   const [activeTab, setActiveTab] = useState<"archives" | "current" | "upcoming">("upcoming");
@@ -28,8 +29,8 @@ export default function EventsPage() {
       const { data } = await supabase.from('events').select('*').order('date', { ascending: true });
       if (data) setEventsData(data);
       
-      const regsData = await fetchAll('registrations', 'event_id, division, weight_class, wrestler_id');
-      setRegistrations(regsData);
+      const regsDataRaw = await fetchAll('registrations', 'id, event_id, division, weight_class, wrestler_id, double_bracket_division, double_bracket_weight_class');
+      setRegistrations(expandDoubleBrackets(regsDataRaw));
 
       const wrestlersData = await fetchAll('wrestlers', 'id, first_name, last_name');
       setWrestlers(wrestlersData);

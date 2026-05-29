@@ -1,6 +1,7 @@
 import AdminDashboardUI from "./AdminDashboardUI";
 import { supabase } from "@/utils/supabase/client";
 import { cookies } from "next/headers";
+import { expandDoubleBrackets } from "@/utils/expandDoubleBrackets";
 
 export const metadata = {
   title: "Admin Dashboard | U.S.S.W.A",
@@ -24,7 +25,8 @@ async function fetchAll(table: string) {
 
 export default async function AdminDashboard() {
   const { data: eventsData } = await supabase.from('events').select('*').order('date', { ascending: true });
-  const registrations = await fetchAll('registrations');
+  const registrationsRaw = await fetchAll('registrations');
+  const registrations = expandDoubleBrackets(registrationsRaw);
   const parents = await fetchAll('parents');
   const wrestlers = await fetchAll('wrestlers');
 

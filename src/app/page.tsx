@@ -1,4 +1,5 @@
 import { supabase } from "@/utils/supabase/client";
+import { expandDoubleBrackets } from "@/utils/expandDoubleBrackets";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +31,8 @@ export default async function Home() {
   const featuredEvents = eventsData || [];
 
   // Fetch all registrations and wrestlers for live counts
-  const registrations = await fetchAll('registrations', 'event_id, division, weight_class, wrestler_id');
+  const registrationsRaw = await fetchAll('registrations', 'id, event_id, division, weight_class, wrestler_id, double_bracket_division, double_bracket_weight_class');
+  const registrations = expandDoubleBrackets(registrationsRaw);
   const wrestlers = await fetchAll('wrestlers', 'id, first_name, last_name');
 
   const getEventCount = (eventId: string) => {

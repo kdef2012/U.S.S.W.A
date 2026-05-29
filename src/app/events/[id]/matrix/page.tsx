@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { supabase } from "@/utils/supabase/client";
 import MatrixView from "./MatrixView";
+import { expandDoubleBrackets } from "@/utils/expandDoubleBrackets";
 
 export const dynamic = "force-dynamic";
 
@@ -19,10 +20,11 @@ export default async function MatrixPage({ params }: { params: Promise<{ id: str
   }
 
   // 2. Fetch all registrations for this event
-  const { data: registrations } = await supabase
+  const { data: registrationsRaw } = await supabase
     .from('registrations')
     .select('*')
     .eq('event_id', id);
+  const registrations = expandDoubleBrackets(registrationsRaw || []);
 
   // 3. Fetch all wrestlers
   const { data: wrestlers } = await supabase
